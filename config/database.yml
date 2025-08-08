@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: demo_festalab_development
+  url: <%= ENV.fetch("DATABASE_URL") %>
+
+test:
+  <<: *default
+  database: demo_festalab_test
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
+  database: demo_festalab_production
+  username: demo_festalab
+  password: <%= ENV["DEMO_FESTALAB_DATABASE_PASSWORD"] %>

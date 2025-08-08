@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+  <%= render post %>
+  <p class="mt-1">
+    <%= link_to "Show this post", post %>
+  </p>
+<% end %>
+<h2 class="text-center"><%= @message %></h2>
