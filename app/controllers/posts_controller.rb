@@ -6,8 +6,13 @@ class PostsController < ApplicationController
       @posts = Post.all
       @message = "Add a new post" if @posts.empty?
     elsif params[:query]
-      @posts = Post.search_by_all_fields(params[:query])
-      @message = "No data found for '#{params[:query]}'" if @posts.empty?
+      clean_query = ActionController::Base.helpers.sanitize(params[:query])
+      Search.create!(content: clean_query, ip: request.remote_ip)
+
+      Analytics.most_searched(clean_query, request.remote_ip)
+
+      @posts = Post.search_by_all_fields(clean_query)
+      @message = "No data found for '#{clean_query}'" if @posts.empty?
     end
 
     respond_to do |format|
