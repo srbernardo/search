@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    if params[:query] == "" || params[:query].nil?
+    if params[:query].blank?
       @posts = Post.all
       @message = "Add a new post" if @posts.empty?
     elsif params[:query]
