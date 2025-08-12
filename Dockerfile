@@ -26,4 +26,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 COPY . .
+
+RUN chmod +x bin/dev bin/rails
+
 RUN bundle exec bootsnap precompile app/ lib/
