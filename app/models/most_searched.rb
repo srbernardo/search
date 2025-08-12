@@ -1,0 +1,2 @@
+class MonstSearched < ApplicationRecord
+end

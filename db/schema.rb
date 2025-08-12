@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_08_06_144043) do
+ActiveRecord::Schema[7.0].define(version: 2025_08_12_003059) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "most_searcheds", force: :cascade do |t|
+    t.string "query"
+    t.string "ip"
+    t.integer "times_searched"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "content"
+    t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
